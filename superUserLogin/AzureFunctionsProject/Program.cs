@@ -1,9 +1,9 @@
 using Microsoft.Azure.Functions.Worker.Builder;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using AzureFunctionsProject.Core.Interfaces;
 using AzureFunctionsProject.Core.Services;
+using AzureFunctionsProject.Services;
 
 var builder = FunctionsApplication.CreateBuilder(args);
 
@@ -20,6 +20,7 @@ var host = new HostBuilder()
     {
         services.AddSingleton<IAuthService, AuthService>();
         services.AddSingleton<ILoggingService, LoggingService>();
+        services.AddSingleton<ITableStorageService, TableStorageService>();
         services.AddLogging();
     })
     .Build();
